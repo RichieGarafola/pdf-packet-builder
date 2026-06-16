@@ -2,7 +2,7 @@
 
 ![CI](https://github.com/RichieGarafola/PDFMerger/actions/workflows/ci.yml/badge.svg)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
-![Streamlit](https://img.shields.io/badge/streamlit-1.28%2B-FF4B4B)
+![Streamlit](https://img.shields.io/badge/streamlit-1.57-FF4B4B)
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 
 A lightweight Streamlit application for merging multiple PDF files into a single, professionally ordered packet — ready for stakeholder review, delivery, or internal distribution.
