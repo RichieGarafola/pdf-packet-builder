@@ -110,7 +110,7 @@ class StreamlitUploadedFile(Protocol):
 
 
 def main() -> None:
-    st.set_page_config(page_title=APP_TITLE, layout="wide")
+    st.set_page_config(page_title=APP_TITLE, page_icon="📄", layout="wide")
     inject_styles()
     render_sidebar()
 
@@ -147,7 +147,10 @@ def main() -> None:
                 output_name = st.text_input(
                     "Output filename",
                     value=DEFAULT_OUTPUT_FILENAME,
-                    help="A .pdf extension will be enforced automatically.",
+                    help=(
+                        "A .pdf extension is enforced automatically. "
+                        "Spaces and special characters are replaced with underscores."
+                    ),
                 )
             with action_column:
                 st.markdown('<div class="cta-offset"></div>', unsafe_allow_html=True)
@@ -415,6 +418,10 @@ def render_sidebar() -> None:
         "2. Confirm order and filename  \n"
         "3. Merge and download"
     )
+    st.sidebar.caption(
+        "Upload order is merge order. To change the sequence, "
+        "clear the uploader and re-upload in the desired order."
+    )
     st.sidebar.divider()
 
     st.sidebar.markdown(
@@ -549,6 +556,7 @@ def render_status_panel(
         st.metric("Ready files", upload_state.ready_file_count)
     with metric_row_two[1]:
         st.metric("Validation", upload_state.validation_label)
+    st.caption("Validation: Ready = all files pass · Review = some files may be skipped · Blocked = batch limit exceeded")
 
     if not upload_state.has_uploads:
         st.info("Your uploaded files and validation details will appear here.")

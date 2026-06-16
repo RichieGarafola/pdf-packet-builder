@@ -1,13 +1,60 @@
 # PDF Packet Builder
 
-![CI](https://github.com/RichieGarafola/PDFMerger/actions/workflows/ci.yml/badge.svg)
+<!-- TODO: Replace the badge below with your real GitHub Actions badge URL once the
+     repository is published. Format:
+     https://github.com/YOUR_USERNAME/YOUR_REPO_NAME/actions/workflows/ci.yml/badge.svg
+     Until then, the placeholder badge below prevents a broken image on GitHub. -->
+![CI](https://img.shields.io/badge/CI-not%20yet%20deployed-lightgrey)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![Streamlit](https://img.shields.io/badge/streamlit-1.57-FF4B4B)
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 
-A lightweight Streamlit application for merging multiple PDF files into a single, professionally ordered packet — ready for stakeholder review, delivery, or internal distribution.
+A Streamlit application for merging multiple PDF files into a single, professionally ordered
+packet — ready for stakeholder review, delivery, or internal distribution.
 
-Upload order becomes merge order. Encrypted, empty, oversized, or malformed files are skipped with clear messages rather than silently failing or crashing the app.
+Upload order becomes merge order. Encrypted, empty, oversized, or malformed files are skipped
+with plain-English messages rather than silently failing or crashing the app.
+
+---
+
+## Live Demo
+
+Coming soon via Streamlit Community Cloud.
+
+---
+
+## Demo
+
+### Application Screenshot
+
+> **To add a screenshot:** deploy the app, take a browser screenshot, save it as
+> `assets/app-home.png`, and commit it. The image will render here automatically.
+
+![Application Screenshot](assets/app-home.png)
+
+### Merge Workflow
+
+1. Upload PDF files using the file uploader
+2. Review the upload order in the File Queue panel
+3. Specify the output filename
+4. Click **Merge PDFs**
+5. Download the finished packet
+
+---
+
+## Business Value
+
+This project demonstrates:
+
+- Python application development
+- Service-layer architecture
+- Streamlit UI development
+- File processing workflows
+- Automated validation
+- Error handling
+- Unit testing
+- CI/CD implementation
+- Docker containerization
 
 ---
 
@@ -20,7 +67,7 @@ Upload order becomes merge order. Encrypted, empty, oversized, or malformed file
 - **Custom output filename** — name the packet before downloading
 - **Download in one click** — no server-side storage, no accounts, no data retained
 - **Docker-ready** — Dockerfile with healthcheck included
-- **Tested service layer** — merge logic is fully tested without Streamlit
+- **Tested service layer** — merge logic is fully unit-tested without Streamlit
 
 ---
 
@@ -40,20 +87,25 @@ Upload order becomes merge order. Encrypted, empty, oversized, or malformed file
 
 ```text
 PDFMerger/
-├── app.py                     # Streamlit UI — thin orchestration layer only
+├── app.py                       # Streamlit UI — thin orchestration layer only
 ├── services/
 │   ├── __init__.py
-│   └── pdf_service.py         # Merge logic, validation, error handling
+│   └── pdf_service.py           # Merge logic, validation, error handling
 ├── utils/
 │   ├── __init__.py
-│   └── file_utils.py          # Filename sanitization and formatting helpers
+│   └── file_utils.py            # Filename sanitization and size formatting
 ├── tests/
-│   └── test_pdf_service.py    # Service-layer unit tests (no Streamlit dependency)
+│   ├── __init__.py
+│   ├── test_pdf_service.py      # Service-layer tests (merge, validation, edge cases)
+│   └── test_file_utils.py       # Utility tests (filename sanitization, size formatting)
+├── assets/
+│   └── app-home.png             # Screenshot — add after first deployment
 ├── .github/
 │   └── workflows/
-│       └── ci.yml             # GitHub Actions CI — tests on Python 3.10, 3.11, 3.12
+│       └── ci.yml               # GitHub Actions CI — tests on Python 3.10, 3.11, 3.12
 ├── .dockerignore
 ├── .gitignore
+├── .gitattributes
 ├── Dockerfile
 ├── requirements.txt
 └── README.md
@@ -64,7 +116,8 @@ PDFMerger/
 - `app.py` owns only the UI. It imports and calls the service layer — no merge logic lives here.
 - `services/pdf_service.py` owns validation, merge behavior, error classification, and logging.
 - `utils/file_utils.py` holds reusable filename and formatting helpers.
-- `tests/test_pdf_service.py` covers the merge path independently of Streamlit, so tests run in CI without a browser or display server.
+- `tests/` covers both the merge path and the utility layer independently of Streamlit, so CI
+  runs without a browser or display server.
 
 ---
 
@@ -80,8 +133,9 @@ PDFMerger/
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/RichieGarafola/PDFMerger.git
-   cd PDFMerger
+   # TODO: replace with your actual repository URL after publishing
+   git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+   cd YOUR_REPO_NAME
    ```
 
 2. **Create and activate a virtual environment**
@@ -120,12 +174,15 @@ PDFMerger/
 ## How to use
 
 1. Open the app in your browser.
-2. Upload one or more PDF files using the file uploader. Upload order is merge order.
-3. Set the output filename in the text box (a `.pdf` extension is enforced automatically).
-4. Click **Merge PDFs**.
-5. Click **Download merged PDF** to save the packet.
+2. Upload one or more PDF files. Upload order is merge order.
+3. Review the File Queue in the status panel to confirm sequence.
+4. Set the output filename — `.pdf` is enforced automatically, special characters become underscores.
+5. Click **Merge PDFs**.
+6. Click **Download merged PDF** to save the finished packet.
 
-If any file is unreadable, encrypted, empty, or oversized, it is skipped and the reason is shown in the UI. If every file fails validation, the app surfaces a clear error instead of producing an empty or corrupt output.
+If any file is unreadable, encrypted, empty, or oversized, it is skipped and the reason is shown
+in the UI. If every file fails validation, the app returns a clear error instead of producing
+an empty or corrupt output.
 
 ---
 
@@ -137,7 +194,8 @@ If any file is unreadable, encrypted, empty, or oversized, it is skipped and the
 | Maximum size per file | 25 MB |
 | Maximum total upload size | 100 MB |
 
-These limits are configured in a single `UploadLimits` dataclass in `app.py` and enforced consistently across the UI and service layer.
+Limits are configured in a single `UploadLimits` dataclass and enforced consistently across
+the UI and service layers.
 
 ---
 
@@ -147,11 +205,21 @@ These limits are configured in a single `UploadLimits` dataclass in `app.py` and
 python -m unittest discover -s tests -v
 ```
 
-All tests are in `tests/test_pdf_service.py` and cover:
+The test suite covers:
 
+**`tests/test_pdf_service.py`**
 - Merging multiple PDFs and verifying page count and order
 - Skipping invalid or malformed files while preserving valid ones
 - Rejecting batches that exceed the configured file-count limit
+- Raising a clear error when every uploaded file is invalid
+- Rejecting empty source lists before any processing begins
+- Per-file validation: empty files, oversized files, wrong extensions, custom limits
+
+**`tests/test_file_utils.py`**
+- Filename sanitization: empty input, `None`, whitespace, all-invalid characters
+- Extension handling: plain stems, existing `.pdf`, non-`.pdf` extensions, dot-prefixed names
+- Character sanitization: spaces, hyphens, uppercase, dots in stem, long filenames
+- File size formatting: byte, KB, MB, and GB ranges; boundary values; negative input
 
 ---
 
@@ -162,6 +230,7 @@ All tests are in `tests/test_pdf_service.py` and cover:
 1. Push this repository to GitHub.
 2. Go to [share.streamlit.io](https://share.streamlit.io) and create a new app pointing at `app.py`.
 3. Streamlit Community Cloud reads `requirements.txt` automatically — no additional configuration required.
+4. Add the live URL to the **Live Demo** section of this README.
 
 ### Docker
 
@@ -178,18 +247,23 @@ The container exposes Streamlit on port `8501` and includes a healthcheck.
 
 ## Architecture note
 
-Merge logic is fully isolated in `services/pdf_service.py`. The same service can be imported by a scheduler, REST API endpoint, or automation worker without any changes — the service has no dependency on Streamlit. The current Streamlit UI is one possible front end, not an architectural requirement.
+Merge logic is fully isolated in `services/pdf_service.py`. The same service can be imported
+by a scheduler, REST API endpoint, or automation worker without any changes — it has no
+dependency on Streamlit. The Streamlit UI is one possible front end, not an architectural
+requirement.
 
 ---
 
 ## Future enhancements
 
+- [ ] Deploy live demo to Streamlit Community Cloud
+- [ ] Add screenshot to `assets/app-home.png`
 - [ ] Page preview thumbnails before merge
 - [ ] Drag-and-drop reordering of uploaded files
 - [ ] Per-file page range selection (merge only selected pages)
 - [ ] Watermark or header/footer injection on merge
-- [ ] REST API endpoint using the existing service layer (FastAPI)
-- [ ] Support for password-protected PDFs (with user-supplied password)
+- [ ] REST API endpoint wrapping the existing service layer (FastAPI)
+- [ ] Support for password-protected PDFs with user-supplied password
 
 ---
 
