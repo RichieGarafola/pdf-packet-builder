@@ -1,0 +1,8 @@
+# Normalize line endings to LF on checkout for all text files
+* text=auto eol=lf
+
+# Explicitly mark binary files
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
