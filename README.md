@@ -27,9 +27,6 @@ Coming soon via Streamlit Community Cloud.
 
 ### Application Screenshot
 
-> **To add a screenshot:** deploy the app, take a browser screenshot, save it as
-> `assets/app-home.png`, and commit it. The image will render here automatically.
-
 ![Application Screenshot](assets/app-home.png)
 
 ### Merge Workflow
