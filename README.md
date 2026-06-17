@@ -1,10 +1,6 @@
 # PDF Packet Builder
 
-<!-- TODO: Replace the badge below with your real GitHub Actions badge URL once the
-     repository is published. Format:
-     https://github.com/YOUR_USERNAME/YOUR_REPO_NAME/actions/workflows/ci.yml/badge.svg
-     Until then, the placeholder badge below prevents a broken image on GitHub. -->
-![CI](https://img.shields.io/badge/CI-not%20yet%20deployed-lightgrey)
+![CI](https://github.com/RichieGarafola/pdf-packet-builder/actions/workflows/ci.yml/badge.svg)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![Streamlit](https://img.shields.io/badge/streamlit-1.57-FF4B4B)
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
@@ -83,7 +79,7 @@ This project demonstrates:
 ## Project structure
 
 ```text
-PDFMerger/
+pdf-packet-builder/
 ├── app.py                       # Streamlit UI — thin orchestration layer only
 ├── services/
 │   ├── __init__.py
@@ -96,7 +92,7 @@ PDFMerger/
 │   ├── test_pdf_service.py      # Service-layer tests (merge, validation, edge cases)
 │   └── test_file_utils.py       # Utility tests (filename sanitization, size formatting)
 ├── assets/
-│   └── app-home.png             # Screenshot — add after first deployment
+│   └── app-home.png             # Application screenshot
 ├── .github/
 │   └── workflows/
 │       └── ci.yml               # GitHub Actions CI — tests on Python 3.10, 3.11, 3.12
@@ -130,9 +126,8 @@ PDFMerger/
 1. **Clone the repository**
 
    ```bash
-   # TODO: replace with your actual repository URL after publishing
-   git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-   cd YOUR_REPO_NAME
+   git clone https://github.com/RichieGarafola/pdf-packet-builder.git
+   cd pdf-packet-builder
    ```
 
 2. **Create and activate a virtual environment**
@@ -224,14 +219,12 @@ The test suite covers:
 
 ### Streamlit Community Cloud
 
-1. Push this repository to GitHub.
-2. Go to [share.streamlit.io](https://share.streamlit.io) and create a new app pointing at `app.py`.
-3. Streamlit Community Cloud reads `requirements.txt` automatically — no additional configuration required.
-4. Add the live URL to the **Live Demo** section of this README.
+1. Fork or clone this repository to your GitHub account.
+2. Go to [share.streamlit.io](https://share.streamlit.io) and sign in with GitHub.
+3. Click **New app**, select this repository, set branch to `main`, set main file to `app.py`.
+4. Click **Deploy** — no additional configuration required.
 
 ### Docker
-
-Build and run locally:
 
 ```bash
 docker build -t pdf-packet-builder .
@@ -253,8 +246,6 @@ requirement.
 
 ## Future enhancements
 
-- [ ] Deploy live demo to Streamlit Community Cloud
-- [ ] Add screenshot to `assets/app-home.png`
 - [ ] Page preview thumbnails before merge
 - [ ] Drag-and-drop reordering of uploaded files
 - [ ] Per-file page range selection (merge only selected pages)
