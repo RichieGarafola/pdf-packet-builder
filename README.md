@@ -15,7 +15,9 @@ with plain-English messages rather than silently failing or crashing the app.
 
 ## Live Demo
 
-Coming soon via Streamlit Community Cloud.
+**[Launch PDF Packet Builder](https://pdf-packet-builder.streamlit.app/)**
+
+Deployed on Streamlit Community Cloud — no installation required.
 
 ---
 
