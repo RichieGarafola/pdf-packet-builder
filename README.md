@@ -1,6 +1,7 @@
 # PDF Packet Builder
 
 ![CI](https://github.com/RichieGarafola/pdf-packet-builder/actions/workflows/ci.yml/badge.svg)
+[![Release](https://img.shields.io/github/v/release/RichieGarafola/pdf-packet-builder)](https://github.com/RichieGarafola/pdf-packet-builder/releases/latest)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![Streamlit](https://img.shields.io/badge/streamlit-1.57-FF4B4B)
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
@@ -18,6 +19,8 @@ with plain-English messages rather than silently failing or crashing the app.
 **[Launch PDF Packet Builder](https://pdf-packet-builder.streamlit.app/)**
 
 Deployed on Streamlit Community Cloud — no installation required.
+
+**[View Release v1.0.0](https://github.com/RichieGarafola/pdf-packet-builder/releases/tag/v1.0.0)**
 
 ---
 
